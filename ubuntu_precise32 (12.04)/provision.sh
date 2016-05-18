@@ -35,6 +35,6 @@ service apache2 restart
 apt-get -y install jq unzip nkf
 apt-get -y autoremove
 
-curl https://raw.githubusercontent.com/taroyabuki/webbook2/master/src/07/7.1--7.5%20SQL%E3%81%AE%E5%9F%BA%E6%9C%AC.sql | mysql -uroot -ppass
-curl https://raw.githubusercontent.com/taroyabuki/webbook2/master/src/08/%E3%83%A6%E3%83%BC%E3%82%B6%E7%AE%A1%E7%90%86%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB.sql | mysql -uroot -ppass mydb
-curl https://raw.githubusercontent.com/taroyabuki/webbook2/master/src/08/messageviewer.php -o /var/www/messageviewer.php
+curl -s https://raw.githubusercontent.com/taroyabuki/webbook2/master/src/07/7.1--7.5%20SQL%E3%81%AE%E5%9F%BA%E6%9C%AC.sql | mysql -uroot -ppass > /dev/null 2>&1
+curl -s https://raw.githubusercontent.com/taroyabuki/webbook2/master/src/08/%E3%83%A6%E3%83%BC%E3%82%B6%E7%AE%A1%E7%90%86%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB.sql | mysql -uroot -ppass mydb > /dev/null 2>&1
+curl -s https://raw.githubusercontent.com/taroyabuki/webbook2/master/src/08/messageviewer.php -o /var/www/messageviewer.php > /dev/null 2>&1
