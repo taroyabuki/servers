@@ -10,7 +10,7 @@ echo "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASS" |
 apt-get -y install mysql-server
 
 #to access MySQL from host
-sed -i -e 's/^bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
+sed -i -e 's/^bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
 service mysql restart
 
 #phpMyAdmin
@@ -18,13 +18,10 @@ echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf
 echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
 echo "phpmyadmin phpmyadmin/mysql/admin-pass password $MYSQL_ROOT_PASS" | debconf-set-selections
 echo "phpmyadmin phpmyadmin/mysql/app-pass password ''" | debconf-set-selections
-apt-get -y install phpmyadmin
-
-#PEAR
-apt-get -y install php-http-request
+apt-get -y install phpmyadmin php-mbstring php-gettext
 
 #for abraham/twitteroauth
-apt-get -y install git #php5-curl
+apt-get -y install git php-curl
 
 #display PHP errors
 sed -i -e 's/display_errors = Off/display_errors = On/' /etc/php/7.0/apache2/php.ini
