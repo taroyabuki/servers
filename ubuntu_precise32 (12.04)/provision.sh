@@ -1,6 +1,11 @@
 #Timezone
 timedatectl set-timezone Asia/Tokyo
 
+apt-get install python-software-properties
+apt-add-repository -y ppa:ptn107/apache #Apache 2.4
+add-apt-repository -y ppa:ondrej/php    #PHP 5.5
+add-apt-repository -y ppa:openjdk-r/ppa #Java 8
+
 apt-get update
 
 #MySQL
@@ -18,17 +23,19 @@ echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf
 echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
 echo "phpmyadmin phpmyadmin/mysql/admin-pass password $MYSQL_ROOT_PASS" | debconf-set-selections
 echo "phpmyadmin phpmyadmin/mysql/app-pass password ''" | debconf-set-selections
-apt-get -y install phpmyadmin
-sudo php5enmod mcrypt
+apt-get -y install phpmyadmin libapache2-mod-php5.5 php5.5-mysql
+php5enmod mcrypt
+a2enmod authn_core
+sh -c "echo 'Include /etc/phpmyadmin/apache.conf' >> /etc/apache2/apache2.conf"
 
 #PEAR
 apt-get -y install php-http-request
 
 #for abraham/twitteroauth
-apt-get -y install git php5-curl
+apt-get -y install git php5.5-curl
 
 #display PHP errors
-sed -i -e 's/display_errors = Off/display_errors = On/' /etc/php5/apache2/php.ini
+sed -i -e 's/display_errors = Off/display_errors = On/' /etc/php/5.5/apache2/php.ini
 service apache2 restart
 
 #other

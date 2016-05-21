@@ -3,6 +3,7 @@ vagrant plugin install vagrant-cachier
 vagrant plugin install vagrant-vbguest
 ```
 
+* [http://localhost/](http://localhost/)
 * [http://localhost/info.php](http://localhost/info.php)
 * [http://localhost/phpmyadmin/](http://localhost/phpmyadmin/)
 * [http://localhost/phpweb/messageviewer.php](http://localhost/phpweb/messageviewer.php)
