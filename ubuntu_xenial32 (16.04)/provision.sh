@@ -36,3 +36,13 @@ sh -c 'echo 127.0.1.1 $(hostname) >> /etc/hosts'
 curl -s https://raw.githubusercontent.com/taroyabuki/webbook2/master/src/07/7.1--7.5%20SQL%E3%81%AE%E5%9F%BA%E6%9C%AC.sql | mysql -uroot -ppass > /dev/null 2>&1
 curl -s https://raw.githubusercontent.com/taroyabuki/webbook2/master/src/08/%E3%83%A6%E3%83%BC%E3%82%B6%E7%AE%A1%E7%90%86%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB.sql | mysql -uroot -ppass mydb > /dev/null 2>&1
 curl -s https://raw.githubusercontent.com/taroyabuki/webbook2/master/src/08/messageviewer.php -o /var/www/html/messageviewer.php > /dev/null 2>&1
+
+wget http://www.post.japanpost.jp/zipcode/dl/oogaki/zip/ken_all.zip > /dev/null 2>&1
+wget http://www.post.japanpost.jp/zipcode/dl/jigyosyo/zip/jigyosyo.zip > /dev/null 2>&1
+unzip ken_all.zip
+unzip jigyosyo.zip
+nkf -w KEN_ALL.CSV > /root/ken_all_utf8.csv
+nkf -w JIGYOSYO.CSV > /root/jigyosyo_utf8.csv
+rm -rf /home/ubuntu/*
+
+curl -s https://raw.githubusercontent.com/taroyabuki/webbook2/master/src/09/zips.sql | mysql -uroot -ppass --local-infile mydb > /dev/null 2>&1
